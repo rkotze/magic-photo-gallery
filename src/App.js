@@ -1,4 +1,5 @@
 import React, { Component, Children } from 'react';
+import PropTypes from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
 
@@ -32,6 +33,23 @@ class ThumbNail extends Component {
   }
 }
 
+class Button extends Component {
+
+  render() {
+    const { children } = this.props;
+    return (
+      <button>{
+        children
+      }</button>
+    );
+  }
+}
+
+Button.propTypes = {
+  direction: PropTypes.oneOf(['next', 'previous']).isRequired,
+  children: PropTypes.string.isRequired
+};
+
 class App extends Component {
   render() {
     return (
@@ -42,6 +60,14 @@ class App extends Component {
 
         <PhotoViewer title="My first photo">
           <Photo src="http://lorempixel.com/600/400/sports/1/" alt="My First photo" />
+          <div>
+            <Button direction="previous">
+              &lt; Previous
+            </Button>
+            <Button direction="next">
+              Next &gt;
+            </Button>
+          </div>
         </PhotoViewer>
 
         <ThumbNailViewer>
