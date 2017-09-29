@@ -7,7 +7,7 @@ Code idea:
 
 ```
 <PhotoGallery>
-  <PhotoView title="This is a title">
+  <PhotoView title={this.state.title}>
     <Photo src={this.state.src} />
     <Button direction="previous" clickHandle={this.changePhoto} /> <Button direction="next" clickHandle={this.changePhoto} />
   </ PhotoView>
