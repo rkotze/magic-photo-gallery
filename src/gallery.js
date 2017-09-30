@@ -8,11 +8,21 @@ import {
   } from "./gallery-components";
 
 class Gallery extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      photoList: props.photoList,
+      selected: props.selected
+    };
+  }
+
   render() {
+    const { photoList, selected } = this.state;
+    const { title, photo } = photoList[selected];
     return (
       <div className="gallery">
-        <PhotoViewer title="My first photo">
-          <Photo src="http://lorempixel.com/600/400/sports/1/" alt="My First photo" />
+        <PhotoViewer title={title}>
+          <Photo src={photo} alt={title} />
           <div>
             <Button direction="previous">
               &lt; Previous
@@ -23,9 +33,11 @@ class Gallery extends Component {
           </div>
         </PhotoViewer>
 
-        <ThumbNailViewer>
-          <ThumbNail title="My First photo" src="http://lorempixel.com/160/80/sports/1/ "/>
-          <ThumbNail title="My Second photo" src="http://lorempixel.com/160/80/sports/2/ "/>
+        <ThumbNailViewer>          
+          {photoList.map(
+            ({ title, thumbnail }) => 
+            <ThumbNail title={title} src={thumbnail} />
+          )}
         </ThumbNailViewer>
       </div>
     );
