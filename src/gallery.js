@@ -16,6 +16,14 @@ class Gallery extends Component {
     };
   }
 
+  changePhoto(photoIndex){
+    return () => {
+      this.setState({
+        selected: photoIndex
+      });
+    };
+  }
+
   render() {
     const { photoList, selected } = this.state;
     const { title, photo } = photoList[selected];
@@ -24,10 +32,10 @@ class Gallery extends Component {
         <PhotoViewer title={title}>
           <Photo src={photo} alt={title} />
           <div>
-            <Button direction="previous">
+            <Button direction="previous" onClick={this.changePhoto(selected - 1)}>
               &lt; Previous
             </Button>
-            <Button direction="next">
+            <Button direction="next" onClick={this.changePhoto(selected + 1)}>
               Next &gt;
             </Button>
           </div>

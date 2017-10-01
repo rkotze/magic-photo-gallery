@@ -34,9 +34,9 @@ export class ThumbNail extends Component {
 export class Button extends Component {
 
   render() {
-    const { children } = this.props;
+    const { children, ...otherProps} = this.props;
     return (
-      <button>{
+      <button {...otherProps}>{
         children
       }</button>
     );
