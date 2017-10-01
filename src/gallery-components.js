@@ -1,5 +1,7 @@
-import React, { Children } from 'react';
+import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
+import './gallery-photo-list.css';
 
 export function Photo({ src, alt, ...otherProps }) {
   return <img src={src} alt={alt} {...otherProps} />;
@@ -21,13 +23,21 @@ PhotoViewer.propTypes = {
 	title: PropTypes.string.isRequired
 };
 
-export function ThumbNailViewer({ children }){
-  return (<div>
-    <ul>{Children.map(children, function(thumbNail){
-      return (<li>{thumbNail}</li>);
-    })}
-    </ul>
-  </div>);
+export class ThumbNailViewer extends Component {
+	shouldComponentUpdate(nextProps) {
+		return isEqual(this.props, nextProps);
+	}
+
+	render() {
+		const { children } = this.props;
+
+	  return (<div className="thumbnail-list">
+	    <ul>{Children.map(children, function(thumbNail){
+	      return (<li>{thumbNail}</li>);
+	    })}
+	    </ul>
+	  </div>);
+	}
 }
 
 export function ThumbNail({ title, src, ...otherProps }) {
