@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'uuid/v1';
 import { 
   PhotoViewer,
@@ -6,14 +7,13 @@ import {
   Button,
   ThumbNailViewer,
   ThumbNail
-  } from "./gallery-components";
+  } from './gallery-components';
 
 class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photoList: props.photoList,
-      selected: props.selected
+      selected: props.startPosition
     };
   }
 
@@ -37,17 +37,18 @@ class Gallery extends Component {
   }
 
   render() {
-    const { photoList, selected } = this.state;
+    const { selected } = this.state;
+    const { photoList } = this.props;
     const { title, photo } = photoList[selected];
     return (
       <div className="gallery">
         <PhotoViewer title={title}>
           <Photo src={photo} alt={title} />
           <div>
-            <Button direction="previous" onClick={this.changePhoto(selected - 1)}>
+            <Button onClick={this.changePhoto(selected - 1)}>
               &lt; Previous
             </Button>
-            <Button direction="next" onClick={this.changePhoto(selected + 1)}>
+            <Button onClick={this.changePhoto(selected + 1)}>
               Next &gt;
             </Button>
           </div>
@@ -63,5 +64,14 @@ class Gallery extends Component {
     );
   }
 }
+
+Gallery.propTypes = {
+  startPosition: PropTypes.number.isRequired,
+  photoList: PropTypes.arrayOf(PropTypes.object).isRequired
+};
+
+Gallery.defaultProps = {
+  startPosition: 0
+};
 
 export default Gallery;

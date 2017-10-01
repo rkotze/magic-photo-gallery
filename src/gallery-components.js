@@ -1,9 +1,14 @@
-import React, { Component, Children } from 'react';
+import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 
 export function Photo({ src, alt, ...otherProps }) {
   return <img src={src} alt={alt} {...otherProps} />;
 }
+
+Photo.propTypes = {
+	src: PropTypes.string.isRequired,
+	alt: PropTypes.string.isRequired
+};
 
 export function PhotoViewer({ title, children }){
   return (<div>
@@ -11,6 +16,10 @@ export function PhotoViewer({ title, children }){
     <div>{children}</div>
   </div>);
 }
+
+PhotoViewer.propTypes = {
+	title: PropTypes.string.isRequired
+};
 
 export function ThumbNailViewer({ children }){
   return (<div>
@@ -21,29 +30,25 @@ export function ThumbNailViewer({ children }){
   </div>);
 }
 
-export class ThumbNail extends Component {
-
-  render() {
-    const { title, src, ...otherProps } = this.props;
-    return (
-      <Photo src={src} alt={title} {...otherProps} />
-    );
-  }
+export function ThumbNail({ title, src, ...otherProps }) {
+  return (
+    <Photo src={src} alt={title} {...otherProps} />
+  );
 }
 
-export class Button extends Component {
+ThumbNail.propTypes = {
+	src: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired
+};
 
-  render() {
-    const { children, ...otherProps} = this.props;
-    return (
-      <button {...otherProps}>{
-        children
-      }</button>
-    );
-  }
+export function Button({ children, ...otherProps}) {
+  return (
+    <button {...otherProps}>{
+      children
+    }</button>
+  );
 }
 
 Button.propTypes = {
-  direction: PropTypes.oneOf(['next', 'previous']).isRequired,
   children: PropTypes.string.isRequired
 };
