@@ -14,11 +14,13 @@ class App extends Component {
           photoList={
           [
             {
+              id: 'photoA',
               photo: 'http://lorempixel.com/600/400/sports/1/',
               title: 'My first photo',
               thumbnail: 'http://lorempixel.com/160/80/sports/1/'
             },
             {
+              id: 'photoB',
               photo: 'http://lorempixel.com/600/400/sports/2/',
               title: 'My second photo',
               thumbnail: 'http://lorempixel.com/160/80/sports/2/'

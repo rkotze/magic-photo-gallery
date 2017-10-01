@@ -1,8 +1,8 @@
 import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 
-export function Photo({ src, alt }) {
-  return <img src={src} alt={alt} />;
+export function Photo({ src, alt, ...otherProps }) {
+  return <img src={src} alt={alt} {...otherProps} />;
 }
 
 export function PhotoViewer({ title, children }){
@@ -24,9 +24,9 @@ export function ThumbNailViewer({ children }){
 export class ThumbNail extends Component {
 
   render() {
-    const { title, src } = this.props;
+    const { title, src, ...otherProps } = this.props;
     return (
-      <Photo src={src} alt={title} />
+      <Photo src={src} alt={title} {...otherProps} />
     );
   }
 }
