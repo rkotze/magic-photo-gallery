@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid/v1';
 import { 
   PhotoViewer,
   Photo,
@@ -19,9 +20,20 @@ class Gallery extends Component {
   changePhoto(photoIndex){
     return () => {
       this.setState({
-        selected: photoIndex
+        selected: this.handleEdges(photoIndex)
       });
     };
+  }
+
+  handleEdges(photoIndex){
+    const photoListEnd = this.props.photoList.length - 1,
+    photoListStart = 0;
+    if(photoIndex > photoListEnd)
+      return photoListStart;
+    if(photoIndex < photoListStart)
+      return photoListEnd;
+
+    return photoIndex;
   }
 
   render() {
@@ -43,8 +55,8 @@ class Gallery extends Component {
 
         <ThumbNailViewer>          
           {photoList.map(
-            ({ title, thumbnail, id }, i) => 
-            <ThumbNail key={id} title={title} src={thumbnail} onClick={this.changePhoto(i)} />
+            ({ title, thumbnail }, i) => 
+            <ThumbNail key={uuid()} title={title} src={thumbnail} onClick={this.changePhoto(i)} />
           )}
         </ThumbNailViewer>
       </div>
