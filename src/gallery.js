@@ -54,11 +54,8 @@ class Gallery extends Component {
           </div>
         </PhotoViewer>
 
-        <ThumbNailViewer>          
-          {photoList.map(
-            ({ title, thumbnail }, i) => 
-            <ThumbNail key={uuid()} title={title} src={thumbnail} onClick={this.changePhoto(i)} />
-          )}
+        <ThumbNailViewer clickAction={this.changePhoto}>          
+          {photoList}
         </ThumbNailViewer>
       </div>
     );

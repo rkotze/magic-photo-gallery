@@ -29,15 +29,20 @@ export class ThumbNailViewer extends Component {
 	}
 
 	render() {
-		const { children } = this.props;
+    // Try: children as a list
+		const { children, clickAction } = this.props;
 
 	  return (<div className="thumbnail-list">
-	    <ul>{Children.map(children, function(thumbNail){
-	      return (<li>{thumbNail}</li>);
+	    <ul>{Children.map(children, function({ title, src }, i){
+	      return (<li><Photo src={src} alt={title} onClick={clickAction(i)} /></li>);
 	    })}
 	    </ul>
 	  </div>);
 	}
+}
+
+ThumbNailViewer.propTypes = {
+  children: PropTypes.isArray.isRequired
 }
 
 export function ThumbNail({ title, src, ...otherProps }) {
