@@ -15,25 +15,33 @@ class Gallery extends Component {
     this.state = {
       selected: props.startPosition
     };
+    this.photoListEnd = props.photoList.length - 1;
+    this.photoListStart = 0;
   }
 
-  changePhoto(photoIndex){
-    return () => {
-      this.setState({
-        selected: this.handleEdges(photoIndex)
-      });
-    };
+  photoChanger(photoIndex){
+    this.setState({
+      selected: photoIndex
+    });
   }
 
-  handleEdges(photoIndex){
-    const photoListEnd = this.props.photoList.length - 1,
-    photoListStart = 0;
-    if(photoIndex > photoListEnd)
-      return photoListStart;
-    if(photoIndex < photoListStart)
-      return photoListEnd;
+  nextPhoto(){
+    const nextSelect = this.state.selected + 1;
 
-    return photoIndex;
+    if(nextSelect > this.photoListEnd)
+      this.photoChanger(0);
+
+    this.photoChanger(nextSelect);
+  }
+
+
+  previousPhoto(){
+    const previousSelect = this.state.selected - 1;
+
+    if(previousSelect < this.photoListStart)
+      this.photoChanger(this.photoListEnd);
+
+    this.photoChanger(previousSelect);
   }
 
   render() {
@@ -45,16 +53,16 @@ class Gallery extends Component {
         <PhotoViewer title={title}>
           <Photo src={photo} alt={title} />
           <div>
-            <Button onClick={this.changePhoto(selected - 1)}>
+            <Button onClick={this.nextPhoto}>
               &lt; Previous
             </Button>
-            <Button onClick={this.changePhoto(selected + 1)}>
+            <Button onClick={this.previousPhoto}>
               Next &gt;
             </Button>
           </div>
         </PhotoViewer>
 
-        <ThumbNailViewer clickAction={this.changePhoto}>          
+        <ThumbNailViewer clickAction={this.photoChanger}>          
           {photoList}
         </ThumbNailViewer>
       </div>

@@ -34,7 +34,14 @@ export class ThumbNailViewer extends Component {
 
 	  return (<div className="thumbnail-list">
 	    <ul>{Children.map(children, function({ title, src }, i){
-	      return (<li><Photo src={src} alt={title} onClick={clickAction(i)} /></li>);
+	      return (<li>
+          <Photo 
+          src={src} 
+          alt={title} 
+          onClick={(photoIndex) => {
+            clickAction(photoIndex); // this won't work :( will need to find another way to pass the click handler.
+          }(i)
+          } /></li>);
 	    })}
 	    </ul>
 	  </div>);
