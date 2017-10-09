@@ -29,10 +29,6 @@ export class ThumbNailViewer extends Component {
 		return isEqual(this.props, nextProps);
 	}
 
-	changePhoto(photoIndex) {
-		return () => this.props.clickAction(photoIndex);
-	}
-
 	render() {
     // Try: children as a list
 		const { children } = this.props;
@@ -40,7 +36,7 @@ export class ThumbNailViewer extends Component {
 	  return (<div className="thumbnail-list">
 	    <ul>{children.map(({ title, thumbnail }, i) => {
 	      return (<li key={uuid()}>
-					<Photo src={thumbnail} alt={title} onClick={this.changePhoto(i)} />
+					<Photo src={thumbnail} alt={title} onClick={this.props.clickAction(i)} />
 				</li>);
 	    })}
 	    </ul>

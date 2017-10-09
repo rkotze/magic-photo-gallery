@@ -16,18 +16,12 @@ class Gallery extends Component {
     };
   }
 
-  changePhoto(photoIndex){
+  changePhoto = (photoIndex) => {
     return () => {
       this.setState({
         selected: this.handleEdges(photoIndex)
       });
     };
-  }
-
-  thumbChanger = (photoIndex) => {
-    this.setState({
-      selected: photoIndex
-    });
   }
 
   handleEdges(photoIndex){
@@ -59,7 +53,7 @@ class Gallery extends Component {
           </div>
         </PhotoViewer>
 
-        <ThumbNailViewer clickAction={this.thumbChanger}>          
+        <ThumbNailViewer clickAction={this.changePhoto}>          
           {photoList}
         </ThumbNailViewer>
       </div>
