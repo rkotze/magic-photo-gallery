@@ -19,6 +19,10 @@ class Gallery extends Component {
     document.addEventListener('keydown', this.arrowKeyPress);
   }
 
+  randomPhotoIndex(){
+    return Math.floor(Math.random() * this.props.photoList.length);
+  }
+
   changePhoto = (photoIndex) => {
     return () => {
       this.setState({
@@ -62,6 +66,9 @@ class Gallery extends Component {
           <div>
             <Button onClick={this.changePhoto(selected - 1)}>
               &lt; Previous
+            </Button>
+            <Button onClick={this.changePhoto(this.randomPhotoIndex())}>
+              Random
             </Button>
             <Button onClick={this.changePhoto(selected + 1)}>
               Next &gt;
