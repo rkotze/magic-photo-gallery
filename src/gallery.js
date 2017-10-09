@@ -24,6 +24,12 @@ class Gallery extends Component {
     };
   }
 
+  thumbChanger = (photoIndex) => {
+    this.setState({
+      selected: photoIndex
+    });
+  }
+
   handleEdges(photoIndex){
     const photoListEnd = this.props.photoList.length - 1,
     photoListStart = 0;
@@ -53,7 +59,7 @@ class Gallery extends Component {
           </div>
         </PhotoViewer>
 
-        <ThumbNailViewer clickAction={this.changePhoto}>          
+        <ThumbNailViewer clickAction={this.thumbChanger}>          
           {photoList}
         </ThumbNailViewer>
       </div>
