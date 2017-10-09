@@ -1,6 +1,7 @@
-import React, { Children, Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
+import uuid from 'uuid/v1';
 import './gallery-photo-list.css';
 
 export function Photo({ src, alt, ...otherProps }) {
@@ -33,8 +34,10 @@ export class ThumbNailViewer extends Component {
 		const { children, clickAction } = this.props;
 
 	  return (<div className="thumbnail-list">
-	    <ul>{Children.map(children, function({ title, src }, i){
-	      return (<li><Photo src={src} alt={title} onClick={clickAction(i)} /></li>);
+	    <ul>{children.map(function({ title, thumbnail }, i){
+	      return (<li key={uuid()}>
+					<Photo src={thumbnail} alt={title} onClick={clickAction(i)} />
+				</li>);
 	    })}
 	    </ul>
 	  </div>);
@@ -42,10 +45,10 @@ export class ThumbNailViewer extends Component {
 }
 
 ThumbNailViewer.propTypes = {
-  children: PropTypes.isArray.isRequired
+  children: PropTypes.array.isRequired
 }
 
-export function ThumbNail({ title, src, ...otherProps }) {
+function ThumbNail({ title, src, ...otherProps }) {
   return (
     <Photo src={src} alt={title} {...otherProps} />
   );

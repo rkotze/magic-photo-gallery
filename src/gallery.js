@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid/v1';
+// import uuid from 'uuid/v1';
 import { 
   PhotoViewer,
   Photo,
   Button,
   ThumbNailViewer,
-  ThumbNail
   } from './gallery-components';
 
 class Gallery extends Component {
