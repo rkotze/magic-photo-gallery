@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import uuid from 'uuid/v1';
 import { 
   PhotoViewer,
   Photo,
@@ -16,12 +15,29 @@ class Gallery extends Component {
     };
   }
 
+  componentDidMount(){
+    document.addEventListener('keydown', this.arrowKeyPress);
+  }
+
   changePhoto = (photoIndex) => {
     return () => {
       this.setState({
         selected: this.handleEdges(photoIndex)
       });
     };
+  }
+
+  arrowKeyPress = (e) => {
+    const keyEvent = e || window.event;
+    const { selected } = this.state;
+    switch (keyEvent.keyCode) {
+      case 37:
+        this.changePhoto(selected - 1)();
+        break;
+      case 39:
+        this.changePhoto(selected + 1)();
+        break;
+    }
   }
 
   handleEdges(photoIndex){
