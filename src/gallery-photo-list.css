@@ -6,3 +6,7 @@
 	display: inline;
 	margin: 0 10px 0 0;
 }
+
+.thumbnail-list li img{
+	cursor: pointer;
+}
