@@ -10,3 +10,15 @@
 .thumbnail-list li img{
 	cursor: pointer;
 }
+
+.base-button {
+	border: none;
+	background-color: #333;
+	color: #cdcdcd;
+	font-size: 18px;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 130px;
+}

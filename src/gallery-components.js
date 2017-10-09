@@ -61,7 +61,7 @@ ThumbNail.propTypes = {
 
 export function Button({ children, ...otherProps}) {
   return (
-    <button {...otherProps}>{
+    <button className="base-button" {...otherProps}>{
       children
     }</button>
   );
