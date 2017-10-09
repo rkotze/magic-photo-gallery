@@ -14,24 +14,24 @@ class App extends Component {
           photoList={
           [
             {
-              photo: 'http://lorempixel.com/600/400/abstract/2/',
+              photo: '/assets/main01.jpg',
               title: 'Abstract art ',
-              thumbnail: 'http://lorempixel.com/160/80/abstract/2/'
+              thumbnail: '/assets/thumb01.jpg'
             },
             {
-              photo: 'http://lorempixel.com/600/400/sports/2/',
+              photo: '/assets/main02.jpg',
               title: 'Riding the wave',
-              thumbnail: 'http://lorempixel.com/160/80/sports/2/'
+              thumbnail: '/assets/thumb02.jpg'
             },
             {
-              photo: 'http://lorempixel.com/600/400/food/4/',
+              photo: '/assets/main03.jpg',
               title: 'Sushi dinner',
-              thumbnail: 'http://lorempixel.com/160/80/food/4/'
+              thumbnail: '/assets/thumb03.jpg'
             },
             {
-              photo: 'http://lorempixel.com/600/400/cats/1/',
+              photo: '/assets/main04.jpg',
               title: 'Cat photo',
-              thumbnail: 'http://lorempixel.com/160/80/cats/1/'
+              thumbnail: '/assets/thumb04.jpg'
             }
           ]
         } />
