@@ -38,16 +38,13 @@ class Gallery extends Component {
   }
 
   arrowKeyPress = (e) => {
-    const keyEvent = e || window.event;
     const { selected } = this.state;
-    switch (keyEvent.keyCode) {
-      case 37:
-        this.changePhoto(selected - 1)();
-        break;
-      case 39:
-        this.changePhoto(selected + 1)();
-        break;
-    }
+    const keyEvent = e || window.event,
+    keyCode = keyEvent.keyCode,
+    LEFT_KEY = 37,
+    RIGHT_KEY = 39;
+    if(keyCode == LEFT_KEY) this.changePhoto(selected - 1)();
+    if(keyCode == RIGHT_KEY) this.changePhoto(selected + 1)();
   }
 
   handleEdges(photoIndex){
