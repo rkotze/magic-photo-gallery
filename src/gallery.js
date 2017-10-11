@@ -7,12 +7,36 @@ import {
   ThumbNailViewer,
   } from './gallery-components';
 
+const changePhoto = (state, action) => {
+  switch (action.type) {
+    case 'INDEX':
+      return { selected: action.selected };
+    case 'NEXT':
+      return { selected: state.selected + 1 };
+    case 'PREVIOUS':
+      return { selected: state.selected - 1 };
+    default:
+      return state;
+  }
+}
 class Gallery extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = changePhoto({
       selected: props.startPosition
-    };
+    }, {});
+  }
+
+  dispatch(action) {
+    this.setState(prevState => changePhoto(prevState, action));
+  }
+
+  previous = () => {
+    this.dispatch({ type: 'PREVIOUS' });
+  }
+
+  next = () => {
+    this.dispatch({ type: 'NEXT' });
   }
 
   componentDidMount(){
@@ -43,8 +67,8 @@ class Gallery extends Component {
     keyCode = keyEvent.keyCode,
     LEFT_KEY = 37,
     RIGHT_KEY = 39;
-    if(keyCode == LEFT_KEY) this.changePhoto(selected - 1)();
-    if(keyCode == RIGHT_KEY) this.changePhoto(selected + 1)();
+    if(keyCode === LEFT_KEY) this.changePhoto(selected - 1)();
+    if(keyCode === RIGHT_KEY) this.changePhoto(selected + 1)();
   }
 
   handleEdges(photoIndex){
@@ -67,13 +91,13 @@ class Gallery extends Component {
         <PhotoViewer title={title}>
           <Photo src={photo} alt={title} />
           <div>
-            <Button onClick={this.changePhoto(selected - 1)}>
+            <Button onClick={this.previous}>
               &lt; Previous
             </Button>
             <Button onClick={this.changePhoto(this.randomPhotoIndex())}>
               Random
             </Button>
-            <Button onClick={this.changePhoto(selected + 1)}>
+            <Button onClick={this.next}>
               Next &gt;
             </Button>
           </div>
