@@ -20,7 +20,14 @@ class Gallery extends Component {
   }
 
   randomPhotoIndex(){
-    return Math.floor(Math.random() * this.props.photoList.length);
+    let newPhotoIndex;
+    const photoListLength = this.props.photoList.length;
+    // imperative programming - is it so bad :(
+    do{
+      newPhotoIndex = Math.floor(Math.random() * photoListLength)
+    }
+    while(newPhotoIndex === this.state.selected);
+    return newPhotoIndex;
   }
 
   changePhoto = (photoIndex) => {
