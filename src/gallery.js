@@ -7,24 +7,39 @@ import {
   ThumbNailViewer,
   } from './gallery-components';
 
+// ACTION standards:  https://github.com/acdlite/flux-standard-action
 const changePhoto = (state, action) => {
   switch (action.type) {
     case 'INDEX':
-      return { selected: action.selected };
+      return handleEdges({ selected: action.payload.selected }, action);
     case 'NEXT':
-      return { selected: state.selected + 1 };
+      return handleEdges({ selected: state.selected + 1 }, action);
     case 'PREVIOUS':
-      return { selected: state.selected - 1 };
+      return handleEdges({ selected: state.selected - 1 }, action);
     default:
       return state;
   }
 }
+
+const handleEdges = (state, action) => {
+  const photoListEnd = action.payload.photoCount - 1,
+  photoListStart = 0;
+  if(state.selected > photoListEnd)
+    return { selected: photoListStart };
+
+  if(state.selected < photoListStart)
+    return { selected: photoListEnd };
+
+  return state;
+}
+
 class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = changePhoto({
       selected: props.startPosition
     }, {});
+    this.photoCount = props.photoList.length;
   }
 
   dispatch(action) {
@@ -32,11 +47,15 @@ class Gallery extends Component {
   }
 
   previous = () => {
-    this.dispatch({ type: 'PREVIOUS' });
+    this.dispatch({ type: 'PREVIOUS', payload: {
+      photoCount: this.photoCount
+    }});
   }
 
   next = () => {
-    this.dispatch({ type: 'NEXT' });
+    this.dispatch({ type: 'NEXT', payload: {
+      photoCount: this.photoCount
+    }});
   }
 
   componentDidMount(){
@@ -44,8 +63,8 @@ class Gallery extends Component {
   }
 
   randomPhotoIndex(){
-    const photoListLength = this.props.photoList.length;
-    const newPhotoIndex = Math.floor(Math.random() * photoListLength)
+    const photoCount = this.photoCount;
+    const newPhotoIndex = Math.floor(Math.random() * photoCount)
 
     if(newPhotoIndex === this.state.selected)
       return this.randomPhotoIndex();
