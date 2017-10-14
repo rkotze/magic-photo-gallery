@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render the gallery go to next image 1`] = `
+<div
+  className="gallery"
+>
+  <div>
+    <h3>
+      Riding the wave
+    </h3>
+    <div>
+      <img
+        alt="Riding the wave"
+        src="/assets/main02.jpg"
+      />
+      <div>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          &lt; Previous
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Random
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Next &gt;
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="thumbnail-list"
+  >
+    <ul>
+      <li>
+        <img
+          alt="Abstract art "
+          onClick={[Function]}
+          src="/assets/thumb01.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Riding the wave"
+          onClick={[Function]}
+          src="/assets/thumb02.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Sushi dinner"
+          onClick={[Function]}
+          src="/assets/thumb03.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Cat photo"
+          onClick={[Function]}
+          src="/assets/thumb04.jpg"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Render the gallery the initial state showing first image selected 1`] = `
+<div
+  className="gallery"
+>
+  <div>
+    <h3>
+      Abstract art 
+    </h3>
+    <div>
+      <img
+        alt="Abstract art "
+        src="/assets/main01.jpg"
+      />
+      <div>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          &lt; Previous
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Random
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Next &gt;
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="thumbnail-list"
+  >
+    <ul>
+      <li>
+        <img
+          alt="Abstract art "
+          onClick={[Function]}
+          src="/assets/thumb01.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Riding the wave"
+          onClick={[Function]}
+          src="/assets/thumb02.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Sushi dinner"
+          onClick={[Function]}
+          src="/assets/thumb03.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Cat photo"
+          onClick={[Function]}
+          src="/assets/thumb04.jpg"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
