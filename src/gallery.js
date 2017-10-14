@@ -6,32 +6,7 @@ import {
   Button,
   ThumbNailViewer,
   } from './gallery-components';
-
-// ACTION standards:  https://github.com/acdlite/flux-standard-action
-const changePhoto = (state, action) => {
-  switch (action.type) {
-    case 'INDEX':
-      return handleEdges({ selected: action.payload.selected }, action);
-    case 'NEXT':
-      return handleEdges({ selected: state.selected + 1 }, action);
-    case 'PREVIOUS':
-      return handleEdges({ selected: state.selected - 1 }, action);
-    default:
-      return state;
-  }
-}
-
-const handleEdges = (state, action) => {
-  const photoListEnd = action.payload.photoCount - 1,
-  photoListStart = 0;
-  if(state.selected > photoListEnd)
-    return { selected: photoListStart };
-
-  if(state.selected < photoListStart)
-    return { selected: photoListEnd };
-
-  return state;
-}
+import { changePhoto } from './change-photo-handlers';
 
 class Gallery extends Component {
   constructor(props) {
@@ -74,8 +49,11 @@ class Gallery extends Component {
 
   changePhoto = (photoIndex) => {
     return () => {
-      this.setState({
-        selected: this.handleEdges(photoIndex)
+      this.dispatch({ 
+        type: 'PHOTO_INDEX', 
+        payload: {
+          photoIndex: photoIndex
+        }
       });
     };
   }
@@ -86,19 +64,8 @@ class Gallery extends Component {
     keyCode = keyEvent.keyCode,
     LEFT_KEY = 37,
     RIGHT_KEY = 39;
-    if(keyCode === LEFT_KEY) this.changePhoto(selected - 1)();
-    if(keyCode === RIGHT_KEY) this.changePhoto(selected + 1)();
-  }
-
-  handleEdges(photoIndex){
-    const photoListEnd = this.props.photoList.length - 1,
-    photoListStart = 0;
-    if(photoIndex > photoListEnd)
-      return photoListStart;
-    if(photoIndex < photoListStart)
-      return photoListEnd;
-
-    return photoIndex;
+    if(keyCode === LEFT_KEY) this.previous();
+    if(keyCode === RIGHT_KEY) this.next();
   }
 
   render() {
