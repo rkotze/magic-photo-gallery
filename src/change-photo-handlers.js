@@ -7,6 +7,8 @@ const changePhoto = (state, action) => {
             return handleEdges({ selected: state.selected + 1 }, action);
         case 'PREVIOUS':
             return handleEdges({ selected: state.selected - 1 }, action);
+        case 'RANDOM':
+            return randomPhotoIndex(state, action);
         default:
             return state;
     }
@@ -22,6 +24,16 @@ const handleEdges = (state, action) => {
         return { selected: photoListEnd };
 
     return state;
+}
+
+const randomPhotoIndex = (state, action) => {
+    const photoCount = action.payload.photoCount;
+    const newPhotoIndex = Math.floor(Math.random() * photoCount)
+
+    if (newPhotoIndex === state.selected)
+        return randomPhotoIndex(state, action);
+
+    return { selected: newPhotoIndex };
 }
 
 export {

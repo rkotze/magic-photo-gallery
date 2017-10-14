@@ -37,14 +37,13 @@ class Gallery extends Component {
     document.addEventListener('keydown', this.arrowKeyPress);
   }
 
-  randomPhotoIndex(){
-    const photoCount = this.photoCount;
-    const newPhotoIndex = Math.floor(Math.random() * photoCount)
-
-    if(newPhotoIndex === this.state.selected)
-      return this.randomPhotoIndex();
-
-    return newPhotoIndex;
+  randomPhotoIndex = () => {
+    this.dispatch({
+      type: 'RANDOM',
+      payload: {
+        photoCount: this.photoCount
+      }
+    });
   }
 
   changePhoto = (photoIndex) => {
@@ -59,7 +58,6 @@ class Gallery extends Component {
   }
 
   arrowKeyPress = (e) => {
-    const { selected } = this.state;
     const keyEvent = e || window.event,
     keyCode = keyEvent.keyCode,
     LEFT_KEY = 37,
@@ -80,7 +78,7 @@ class Gallery extends Component {
             <Button onClick={this.previous}>
               &lt; Previous
             </Button>
-            <Button onClick={this.changePhoto(this.randomPhotoIndex())}>
+            <Button onClick={this.randomPhotoIndex}>
               Random
             </Button>
             <Button onClick={this.next}>
