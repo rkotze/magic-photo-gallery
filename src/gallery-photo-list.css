@@ -1,3 +1,12 @@
+body {
+	background-color: #cdcdcd;
+}
+
+.gallery img {
+	border: 6px solid #333;
+	border-radius: 4px;
+}
+
 .thumbnail-list ul {
 	list-style: none;
 }
@@ -10,26 +19,34 @@
 .thumbnail-list li img{
 	cursor: pointer;
 	transition: filter 300ms linear;
+	transition: border-color 300ms linear;
 	filter: grayscale(100%);
 }
 
 .thumbnail-list li:hover img{
 	cursor: pointer;
 	filter: initial;
+	border-color: rgb(0, 161, 202);
 }
 
 .thumbnail-list li .selected {
 	filter: initial;
+	border-color: rgb(0, 161, 202);
 }
 
 .base-button {
 	border: none;
 	background-color: #333;
-	color: #cdcdcd;
+	color: rgb(0, 161, 202);
 	font-size: 18px;
 	margin: 10px;
 	padding: 10px;
 	border-radius: 4px;
 	cursor: pointer;
 	width: 130px;
+	outline: none;
+}
+
+.base-button:hover{
+	background-color: #fff;
 }

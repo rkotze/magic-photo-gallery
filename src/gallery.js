@@ -73,7 +73,7 @@ class Gallery extends Component {
     return (
       <div className="gallery">
         <PhotoViewer title={title}>
-          <Photo src={photo} alt={title} />
+          <Photo className="main-photo" src={photo} alt={title} />
           <div>
             <Button onClick={this.previous}>
               &lt; Previous
