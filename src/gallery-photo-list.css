@@ -9,6 +9,17 @@
 
 .thumbnail-list li img{
 	cursor: pointer;
+	transition: filter 300ms linear;
+	filter: grayscale(100%);
+}
+
+.thumbnail-list li:hover img{
+	cursor: pointer;
+	filter: initial;
+}
+
+.thumbnail-list li .selected {
+	filter: initial;
 }
 
 .base-button {

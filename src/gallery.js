@@ -87,7 +87,7 @@ class Gallery extends Component {
           </div>
         </PhotoViewer>
 
-        <ThumbNailViewer clickAction={this.changePhoto}>          
+        <ThumbNailViewer selected={selected} clickAction={this.changePhoto}>          
           {photoList}
         </ThumbNailViewer>
       </div>

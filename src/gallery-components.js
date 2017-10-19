@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
 import uuid from 'uuid/v1';
 import './gallery-photo-list.css';
 
@@ -24,29 +23,24 @@ PhotoViewer.propTypes = {
 	title: PropTypes.string.isRequired
 };
 
-export class ThumbNailViewer extends Component {
-	shouldComponentUpdate(nextProps) {
-		return isEqual(this.props, nextProps);
-	}
-
-	render() {
-    // Try: children as a list
-		const { children } = this.props;
-
-	  return (<div className="thumbnail-list">
-	    <ul>{children.map(({ title, thumbnail }, i) => {
-	      return (<li key={uuid()}>
-					<Photo src={thumbnail} alt={title} onClick={this.props.clickAction(i)} />
-				</li>);
-	    })}
+export function ThumbNailViewer({ children, selected, clickAction }) {
+	  return (
+		<div className="thumbnail-list">
+			<ul>
+				{children.map(({ title, thumbnail }, i) => {
+					return (
+					<li key={uuid()}>
+						<Photo className={selected === i ? 'selected' : null} src={thumbnail} alt={title} onClick={clickAction(i)} />
+					</li>);
+				})}
 	    </ul>
 	  </div>);
-	}
 }
 
 ThumbNailViewer.propTypes = {
-  children: PropTypes.array.isRequired
-}
+	children: PropTypes.array.isRequired,
+	selected: PropTypes.number.isRequired
+};
 
 function ThumbNail({ title, src, ...otherProps }) {
   return (
