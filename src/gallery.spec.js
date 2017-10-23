@@ -44,4 +44,20 @@ describe('Render the gallery', () => {
         let gallerySnap = galleryComponent.toJSON();
         expect(gallerySnap).toMatchSnapshot();
     });
+
+    it('go to next image using keyboard', () => {
+        galleryComponent.getInstance().arrowKeyPress({
+            keyCode: 39
+        });
+        let gallerySnap = galleryComponent.toJSON();
+        expect(gallerySnap).toMatchSnapshot();
+    });
+
+    it('go to previous image using keyboard', () => {
+        galleryComponent.getInstance().arrowKeyPress({
+            keyCode: 37
+        });
+        let gallerySnap = galleryComponent.toJSON();
+        expect(gallerySnap).toMatchSnapshot();
+    });
 });

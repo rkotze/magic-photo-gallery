@@ -77,6 +77,160 @@ exports[`Render the gallery go to next image 1`] = `
 </div>
 `;
 
+exports[`Render the gallery go to next image using keyboard 1`] = `
+<div
+  className="gallery"
+>
+  <div>
+    <h3>
+      Sushi dinner
+    </h3>
+    <div>
+      <img
+        alt="Sushi dinner"
+        className="main-photo"
+        src="/assets/main03.jpg"
+      />
+      <div>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          &lt; Previous
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Random
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Next &gt;
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="thumbnail-list"
+  >
+    <ul>
+      <li>
+        <img
+          alt="Abstract art "
+          className={null}
+          onClick={[Function]}
+          src="/assets/thumb01.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Riding the wave"
+          className={null}
+          onClick={[Function]}
+          src="/assets/thumb02.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Sushi dinner"
+          className="selected"
+          onClick={[Function]}
+          src="/assets/thumb03.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Cat photo"
+          className={null}
+          onClick={[Function]}
+          src="/assets/thumb04.jpg"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Render the gallery go to previous image using keyboard 1`] = `
+<div
+  className="gallery"
+>
+  <div>
+    <h3>
+      Riding the wave
+    </h3>
+    <div>
+      <img
+        alt="Riding the wave"
+        className="main-photo"
+        src="/assets/main02.jpg"
+      />
+      <div>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          &lt; Previous
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Random
+        </button>
+        <button
+          className="base-button"
+          onClick={[Function]}
+        >
+          Next &gt;
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="thumbnail-list"
+  >
+    <ul>
+      <li>
+        <img
+          alt="Abstract art "
+          className={null}
+          onClick={[Function]}
+          src="/assets/thumb01.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Riding the wave"
+          className="selected"
+          onClick={[Function]}
+          src="/assets/thumb02.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Sushi dinner"
+          className={null}
+          onClick={[Function]}
+          src="/assets/thumb03.jpg"
+        />
+      </li>
+      <li>
+        <img
+          alt="Cat photo"
+          className={null}
+          onClick={[Function]}
+          src="/assets/thumb04.jpg"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
 exports[`Render the gallery the initial state showing first image selected 1`] = `
 <div
   className="gallery"
