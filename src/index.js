@@ -1,4 +1,4 @@
-// could not make this polyfill work for testing
+// TODO: could not make this polyfill work for testing
 // polyfills in place for prod and dev web.config
 
 import "babel-polyfill";

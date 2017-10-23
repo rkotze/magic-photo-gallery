@@ -20,5 +20,12 @@
   },
   "devDependencies": {
     "react-test-renderer": "^16.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js",
+      "!src/*Worker.js"
+    ]
   }
 }
