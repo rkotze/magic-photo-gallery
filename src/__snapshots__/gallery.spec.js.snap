@@ -11,6 +11,7 @@ exports[`Render the gallery go to next image 1`] = `
     <div>
       <img
         alt="Riding the wave"
+        className="main-photo"
         src="/assets/main02.jpg"
       />
       <div>
@@ -42,6 +43,7 @@ exports[`Render the gallery go to next image 1`] = `
       <li>
         <img
           alt="Abstract art "
+          className={null}
           onClick={[Function]}
           src="/assets/thumb01.jpg"
         />
@@ -49,6 +51,7 @@ exports[`Render the gallery go to next image 1`] = `
       <li>
         <img
           alt="Riding the wave"
+          className="selected"
           onClick={[Function]}
           src="/assets/thumb02.jpg"
         />
@@ -56,6 +59,7 @@ exports[`Render the gallery go to next image 1`] = `
       <li>
         <img
           alt="Sushi dinner"
+          className={null}
           onClick={[Function]}
           src="/assets/thumb03.jpg"
         />
@@ -63,6 +67,7 @@ exports[`Render the gallery go to next image 1`] = `
       <li>
         <img
           alt="Cat photo"
+          className={null}
           onClick={[Function]}
           src="/assets/thumb04.jpg"
         />
@@ -83,6 +88,7 @@ exports[`Render the gallery the initial state showing first image selected 1`] =
     <div>
       <img
         alt="Abstract art "
+        className="main-photo"
         src="/assets/main01.jpg"
       />
       <div>
@@ -114,6 +120,7 @@ exports[`Render the gallery the initial state showing first image selected 1`] =
       <li>
         <img
           alt="Abstract art "
+          className="selected"
           onClick={[Function]}
           src="/assets/thumb01.jpg"
         />
@@ -121,6 +128,7 @@ exports[`Render the gallery the initial state showing first image selected 1`] =
       <li>
         <img
           alt="Riding the wave"
+          className={null}
           onClick={[Function]}
           src="/assets/thumb02.jpg"
         />
@@ -128,6 +136,7 @@ exports[`Render the gallery the initial state showing first image selected 1`] =
       <li>
         <img
           alt="Sushi dinner"
+          className={null}
           onClick={[Function]}
           src="/assets/thumb03.jpg"
         />
@@ -135,6 +144,7 @@ exports[`Render the gallery the initial state showing first image selected 1`] =
       <li>
         <img
           alt="Cat photo"
+          className={null}
           onClick={[Function]}
           src="/assets/thumb04.jpg"
         />
