@@ -37,4 +37,18 @@ describe('Changing the photo state', () => {
 
         expect(changePhoto(currentState, action)).toEqual({ selected: 2 });
     });
+
+    it('get a random photo index between 0 and 3', () => {
+        const currentState = { selected: 1 };
+        const action = {
+            type: 'RANDOM',
+            payload: {
+                photoCount: 3,
+                photoIndex: 2
+            }
+        };
+        const newState = changePhoto(currentState, action);
+        expect(newState.selected).toBeGreaterThanOrEqual(0);
+        expect(newState.selected).toBeLessThanOrEqual(2);
+    });
 });
