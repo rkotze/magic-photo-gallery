@@ -60,4 +60,10 @@ describe('Render the gallery', () => {
         let gallerySnap = galleryComponent.toJSON();
         expect(gallerySnap).toMatchSnapshot();
     });
+
+    it('specify a photo to change to', () => {
+        galleryComponent.getInstance().changePhoto(3)();
+        let gallerySnap = galleryComponent.toJSON();
+        expect(gallerySnap).toMatchSnapshot();
+    });
 });
