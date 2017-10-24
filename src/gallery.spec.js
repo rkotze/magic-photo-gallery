@@ -2,8 +2,11 @@ import React from 'react';
 import Gallery from './gallery';
 import renderer from 'react-test-renderer';
 
+import * as photoHandler from './change-photo-handlers'; //makes easy to mock methods
+
 describe('Render the gallery', () => {
-    let galleryComponent;
+    let galleryComponent, 
+    changePhotoCopy = photoHandler.changePhoto;
     beforeAll(() => {
         galleryComponent = renderer.create(
             <Gallery 
@@ -32,6 +35,13 @@ describe('Render the gallery', () => {
                 ]
             } />
         );
+    });
+
+    it('check changePhoto is called on dispatch', () => {
+        photoHandler.changePhoto = jest.fn();
+        galleryComponent.getInstance().dispatch({ type: 'next' });
+        expect(photoHandler.changePhoto).toHaveBeenCalled();
+        photoHandler.changePhoto = changePhotoCopy;
     });
 
     it('the initial state showing first image selected', () => {
