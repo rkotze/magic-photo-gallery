@@ -8,27 +8,45 @@ import {
   } from './gallery-components';
 import { changePhoto } from './change-photo-handlers';
 
+function connect(MyComponent, dispatchAction) {
+  class Connect extends Component {
+    constructor(props) {
+      super(props);
+      this.state = dispatchAction({
+        selected: props.startPosition
+      }, {});
+    }
+  
+    dispatch = (action) => {
+      this.setState(prevState => dispatchAction(prevState, action));
+    }
+
+    render(){
+      return (<MyComponent {...this.props} {...this.state} dispatch={this.dispatch} />);
+    }
+  }
+
+  Connect.defaultProps = {
+    startPosition: 0
+  };
+
+  return Connect;
+}
+
 class Gallery extends Component {
   constructor(props) {
     super(props);
-    this.state = changePhoto({
-      selected: props.startPosition
-    }, {});
     this.photoCount = props.photoList.length;
   }
 
-  dispatch(action) {
-    this.setState(prevState => changePhoto(prevState, action));
-  }
-
   previous = () => {
-    this.dispatch({ type: 'PREVIOUS', payload: {
+    this.props.dispatch({ type: 'PREVIOUS', payload: {
       photoCount: this.photoCount
     }});
   }
 
   next = () => {
-    this.dispatch({ type: 'NEXT', payload: {
+    this.props.dispatch({ type: 'NEXT', payload: {
       photoCount: this.photoCount
     }});
   }
@@ -38,7 +56,7 @@ class Gallery extends Component {
   }
 
   randomPhotoIndex = () => {
-    this.dispatch({
+    this.props.dispatch({
       type: 'RANDOM',
       payload: {
         photoCount: this.photoCount
@@ -48,7 +66,7 @@ class Gallery extends Component {
 
   changePhoto = (photoIndex) => {
     return () => {
-      this.dispatch({ 
+      this.props.dispatch({ 
         type: 'PHOTO_INDEX', 
         payload: {
           photoIndex: photoIndex
@@ -67,8 +85,8 @@ class Gallery extends Component {
   }
 
   render() {
-    const { selected } = this.state;
-    const { photoList } = this.props;
+    // const { selected } = this.state;
+    const { photoList, selected } = this.props;
     const { title, photo } = photoList[selected];
     return (
       <div className="gallery">
@@ -104,4 +122,4 @@ Gallery.defaultProps = {
   startPosition: 0
 };
 
-export default Gallery;
+export default connect(Gallery, changePhoto);
