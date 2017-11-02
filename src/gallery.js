@@ -8,29 +8,38 @@ import {
   } from './gallery-components';
 import { changePhoto } from './change-photo-handlers';
 
-function connect(MyComponent, dispatchAction) {
-  class Connect extends Component {
-    constructor(props) {
-      super(props);
-      this.state = dispatchAction({
-        selected: props.startPosition
-      }, {});
-    }
-  
-    dispatch = (action) => {
-      this.setState(prevState => dispatchAction(prevState, action));
+function connect(defaultState, dispatchAction) {
+  return function(MyComponent){
+
+    function mapPropsToState(props = {}, state = {}) {
+      const stateKeys = Object.keys(state);
+      const reducer = (newState, keyName) => {
+        if(keyName in props){
+          newState[keyName] = props[keyName];
+        }
+        return newState;
+      };
+
+      return stateKeys.reduce(reducer, state);
     }
 
-    render(){
-      return (<MyComponent {...this.props} {...this.state} dispatch={this.dispatch} />);
+    return class Connect extends Component {
+      constructor(props) {
+        super(props);
+        this.state = dispatchAction(
+          mapPropsToState(props, defaultState),
+        {});
+      }
+    
+      dispatch = (action) => {
+        this.setState(prevState => dispatchAction(prevState, action));
+      }
+
+      render(){
+        return (<MyComponent {...this.props} {...this.state} dispatch={this.dispatch} />);
+      }
     }
   }
-
-  Connect.defaultProps = {
-    startPosition: 0
-  };
-
-  return Connect;
 }
 
 class Gallery extends Component {
@@ -85,7 +94,6 @@ class Gallery extends Component {
   }
 
   render() {
-    // const { selected } = this.state;
     const { photoList, selected } = this.props;
     const { title, photo } = photoList[selected];
     return (
@@ -114,12 +122,7 @@ class Gallery extends Component {
 }
 
 Gallery.propTypes = {
-  startPosition: PropTypes.number.isRequired,
   photoList: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-Gallery.defaultProps = {
-  startPosition: 0
-};
-
-export default connect(Gallery, changePhoto);
+export default connect({ selected: 0 }, changePhoto)(Gallery);
