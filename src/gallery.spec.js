@@ -1,15 +1,18 @@
 import React from 'react';
-import Gallery from './gallery';
+import { Gallery } from './gallery';
 import renderer from 'react-test-renderer';
 
 import * as photoHandler from './change-photo-handlers'; //makes easy to mock methods
 
 describe.only('Render the gallery', () => {
     let galleryComponent, 
-    changePhotoCopy = photoHandler.changePhoto;
+    changePhotoCopy = photoHandler.changePhoto,
+    dispatchMock = jest.fn();
+
     beforeAll(() => {
         galleryComponent = renderer.create(
-            <Gallery 
+            <Gallery
+            dispatch={dispatchMock}
             photoList={
                 [
                 {

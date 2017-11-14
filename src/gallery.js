@@ -93,4 +93,13 @@ Gallery.propTypes = {
   photoList: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-export default connect({ selected: 0 }, changePhoto)(Gallery);
+Gallery.defaultProps = {
+  selected: 0
+};
+
+const EnhancedGallery = connect({ selected: 0 }, changePhoto)(Gallery);
+
+export {
+  EnhancedGallery as default,
+  Gallery
+}
