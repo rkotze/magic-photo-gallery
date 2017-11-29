@@ -44,15 +44,19 @@ describe('Render the gallery', () => {
         expect(galleryComponent).toMatchSnapshot();
     });
 
+    it('change image in gallery by setting selected', () => {
+        galleryComponent.setProps({selected: 1});
+        expect(galleryComponent).toMatchSnapshot();
+    });
+
     it('go to next image', () => {
         galleryComponent.instance().next();
         expect(dispatchMock).toBeCalledWith({ 
             type: 'NEXT', 
             payload: {
                 photoCount: 4
-            }});
-        galleryComponent.setProps({selected: 1});
-        expect(galleryComponent).toMatchSnapshot();
+            }
+        });
     });
 
     it('go to previous image using keyboard', () => {
@@ -64,9 +68,8 @@ describe('Render the gallery', () => {
             type: 'PREVIOUS', 
             payload: {
                 photoCount: 4
-            }});
-        galleryComponent.setProps({ selected: 0 });
-        expect(galleryComponent).toMatchSnapshot();
+            }
+        });
     });
 
     it('go to next image using keyboard', () => {
@@ -78,10 +81,8 @@ describe('Render the gallery', () => {
             type: 'NEXT', 
             payload: {
                 photoCount: 4
-         }});
-        
-        galleryComponent.setProps({ selected: 1 });
-        expect(galleryComponent).toMatchSnapshot();
+            }
+        });
     });
 
     it('specify a photo to change to', () => {
@@ -90,8 +91,7 @@ describe('Render the gallery', () => {
             type: 'PHOTO_INDEX', 
             payload: {
                 photoIndex: 3
-         }});
-        galleryComponent.setProps({ selected: 3 });
-        expect(galleryComponent).toMatchSnapshot();
+            }
+        });
     });
 });
