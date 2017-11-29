@@ -4,7 +4,7 @@ import { Gallery } from './gallery';
 
 import * as photoHandler from './change-photo-handlers'; //makes easy to mock methods
 
-describe.only('Render the gallery', () => {
+describe('Render the gallery', () => {
     let galleryComponent, 
     changePhotoCopy = photoHandler.changePhoto,
     dispatchMock = jest.fn();
@@ -53,20 +53,28 @@ describe.only('Render the gallery', () => {
 
     it('go to next image', () => {
         galleryComponent.instance().next();
-        expect(dispatchMock).toBeCalledWith({ type: 'NEXT', payload: {
-            photoCount: 4
-        }});
+        expect(dispatchMock).toBeCalledWith({ 
+            type: 'NEXT', 
+            payload: {
+                photoCount: 4
+            }});
         galleryComponent.setProps({selected: 1});
         expect(galleryComponent).toMatchSnapshot();
     });
 
-    // it('go to next image using keyboard', () => {
-    //     galleryComponent.getInstance().arrowKeyPress({
-    //         keyCode: 39
-    //     });
-    //     let gallerySnap = galleryComponent.toJSON();
-    //     expect(gallerySnap).toMatchSnapshot();
-    // });
+    it('go to previous image using keyboard', () => {
+        const LEFT_KEY = 37;
+        galleryComponent.instance().arrowKeyPress({
+            keyCode: LEFT_KEY
+        });
+        expect(dispatchMock).toBeCalledWith({ 
+            type: 'PREVIOUS', 
+            payload: {
+                photoCount: 4
+            }});
+        galleryComponent.setProps({ selected: 0 });
+        expect(galleryComponent).toMatchSnapshot();
+    });
 
     // it('go to previous image using keyboard', () => {
     //     galleryComponent.getInstance().arrowKeyPress({
