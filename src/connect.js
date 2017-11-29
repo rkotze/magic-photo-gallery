@@ -5,14 +5,14 @@ function connect(defaultState, dispatchAction) {
 
     function mapPropsToState(props = {}, state = {}) {
       const stateKeys = Object.keys(state);
-      const reducer = (newState, keyName) => {
+      const propsToStateReducer = (newState, keyName) => {
         if (keyName in props) {
           newState[keyName] = props[keyName];
         }
         return newState;
       };
 
-      return stateKeys.reduce(reducer, state);
+      return stateKeys.reduce(propsToStateReducer, state);
     }
 
     return class Connect extends Component {
