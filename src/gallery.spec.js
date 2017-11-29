@@ -40,6 +40,10 @@ describe('Render the gallery', () => {
         );
     });
 
+    afterEach(() => {
+        dispatchMock.mockReset();
+    });
+
     // it('check changePhoto is called on dispatch', () => {
     //     photoHandler.changePhoto = jest.fn();
     //     galleryComponent.getInstance().dispatch({ type: 'next' });
@@ -76,13 +80,20 @@ describe('Render the gallery', () => {
         expect(galleryComponent).toMatchSnapshot();
     });
 
-    // it('go to previous image using keyboard', () => {
-    //     galleryComponent.getInstance().arrowKeyPress({
-    //         keyCode: 37
-    //     });
-    //     let gallerySnap = galleryComponent.toJSON();
-    //     expect(gallerySnap).toMatchSnapshot();
-    // });
+    it('go to next image using keyboard', () => {
+        const RIGHT_KEY = 39;
+        galleryComponent.instance().arrowKeyPress({
+            keyCode: RIGHT_KEY
+        });
+        expect(dispatchMock).toBeCalledWith({ 
+            type: 'NEXT', 
+            payload: {
+                photoCount: 4
+         }});
+        
+         galleryComponent.setProps({ selected: 1 });
+        expect(galleryComponent).toMatchSnapshot();
+    });
 
     // it('specify a photo to change to', () => {
     //     galleryComponent.getInstance().changePhoto(3)();
