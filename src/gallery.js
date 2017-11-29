@@ -8,6 +8,7 @@ import {
 } from './gallery-components';
 
 import { changePhoto } from './change-photo-handlers';
+import { nextPhoto, previousPhoto, randomPhoto } from './change-photo-actions';
 import connect from "./connect";
 
 class Gallery extends Component {
@@ -17,28 +18,19 @@ class Gallery extends Component {
   }
 
   previous = () => {
-    this.props.dispatch({ type: 'PREVIOUS', payload: {
-      photoCount: this.photoCount
-    }});
+    this.props.dispatch(previousPhoto(this.photoCount));
   }
 
   next = () => {
-    this.props.dispatch({ type: 'NEXT', payload: {
-      photoCount: this.photoCount
-    }});
+    this.props.dispatch(nextPhoto(this.photoCount));
+  }
+  
+  randomPhotoIndex = () => {
+    this.props.dispatch(randomPhoto(this.photoCount));
   }
 
   componentDidMount(){
     document.addEventListener('keydown', this.arrowKeyPress);
-  }
-
-  randomPhotoIndex = () => {
-    this.props.dispatch({
-      type: 'RANDOM',
-      payload: {
-        photoCount: this.photoCount
-      }
-    });
   }
 
   changePhoto = (photoIndex) => {
