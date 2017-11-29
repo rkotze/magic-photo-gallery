@@ -10,3 +10,10 @@ export const nextPhoto = (photosLength) => changePhotoAction('NEXT', photosLengt
 export const previousPhoto = (photosLength) => changePhotoAction('PREVIOUS', photosLength);
 
 export const randomPhoto = (photosLength) => changePhotoAction('RANDOM', photosLength);
+
+export const selectPhoto = (photoIndex) => ({
+    type: 'PHOTO_INDEX',
+    payload: {
+        photoIndex: photoIndex
+    }
+});

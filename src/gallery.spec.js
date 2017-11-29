@@ -1,12 +1,8 @@
 import React from 'react';
 import { Gallery } from './gallery';
-// import renderer from 'react-test-renderer';
-
-import * as photoHandler from './change-photo-handlers'; //makes easy to mock methods
 
 describe('Render the gallery', () => {
     let galleryComponent, 
-    changePhotoCopy = photoHandler.changePhoto,
     dispatchMock = jest.fn();
 
     beforeAll(() => {
@@ -43,13 +39,6 @@ describe('Render the gallery', () => {
     afterEach(() => {
         dispatchMock.mockReset();
     });
-
-    // it('check changePhoto is called on dispatch', () => {
-    //     photoHandler.changePhoto = jest.fn();
-    //     galleryComponent.getInstance().dispatch({ type: 'next' });
-    //     expect(photoHandler.changePhoto).toHaveBeenCalled();
-    //     photoHandler.changePhoto = changePhotoCopy;
-    // });
 
     it('the initial state showing first image selected', () => {
         expect(galleryComponent).toMatchSnapshot();
@@ -91,13 +80,18 @@ describe('Render the gallery', () => {
                 photoCount: 4
          }});
         
-         galleryComponent.setProps({ selected: 1 });
+        galleryComponent.setProps({ selected: 1 });
         expect(galleryComponent).toMatchSnapshot();
     });
 
-    // it('specify a photo to change to', () => {
-    //     galleryComponent.getInstance().changePhoto(3)();
-    //     let gallerySnap = galleryComponent.toJSON();
-    //     expect(gallerySnap).toMatchSnapshot();
-    // });
+    it('specify a photo to change to', () => {
+        galleryComponent.instance().changePhoto(3)();
+        expect(dispatchMock).toBeCalledWith({ 
+            type: 'PHOTO_INDEX', 
+            payload: {
+                photoIndex: 3
+         }});
+        galleryComponent.setProps({ selected: 3 });
+        expect(galleryComponent).toMatchSnapshot();
+    });
 });

@@ -8,7 +8,7 @@ import {
 } from './gallery-components';
 
 import { changePhoto } from './change-photo-handlers';
-import { nextPhoto, previousPhoto, randomPhoto } from './change-photo-actions';
+import { nextPhoto, previousPhoto, randomPhoto, selectPhoto } from './change-photo-actions';
 import connect from "./connect";
 
 class Gallery extends Component {
@@ -35,12 +35,7 @@ class Gallery extends Component {
 
   changePhoto = (photoIndex) => {
     return () => {
-      this.props.dispatch({ 
-        type: 'PHOTO_INDEX', 
-        payload: {
-          photoIndex: photoIndex
-        }
-      });
+      this.props.dispatch(selectPhoto(photoIndex));
     };
   }
 
