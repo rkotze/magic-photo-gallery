@@ -24,6 +24,9 @@ function connect(defaultState, dispatchAction) {
       }
 
       dispatch = (action) => {
+        if(typeof action === 'function'){
+          return action(this.dispatch, this.state);
+        }
         this.setState(prevState => dispatchAction(prevState, action));
       }
 
